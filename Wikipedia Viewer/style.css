@@ -1,0 +1,33 @@
+header{
+	margin-bottom: 50px;
+}
+body{
+	background: -webkit-radial-gradient(white 7%, transparent 16%), #F8EBEE;
+	background-size:10px 10px;       
+	color: #0C3934; 	
+}
+main{
+	margin:10px;
+}
+input[type="text"]{
+	width: 60%;
+	margin: 0 auto;
+	border-radius: 10px;
+	font-size: 18px;
+	font-weight: bold;
+}
+button{
+	margin: 15px 0;
+	background-color: #D1EEEE;
+}
+#searchRows{
+	width: 85%;
+	margin: 0 auto;
+}
+.searchRow{
+	margin: 15px 0;
+	border: 2px solid black;
+}
+footer{
+	display: none;
+}
