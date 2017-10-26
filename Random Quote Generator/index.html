@@ -3,44 +3,44 @@ Date Created - 22th October,2017
 Author - Adarsh Lilha -->
 <!DOCTYPE html>
 <html>
-<head>
-	<title>Random Quote Generator</title>
-	<!-- Start Meta Tags -->
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width,initial-scale=1.0">
-	<meta name="description" content="Adarsh Lilha Portfolio">
-	<meta name="language" content="EN">
-	<meta name="Author" content="Adarsh Lilha">
-	<!-- End Meta Tags -->
-	<!-- Link Bootstrap CDN -->
-	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-	<!-- Link Jquery CDN -->
-	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-	<link rel="stylesheet" href="style.css">
-</head>
-<body style="background-color: #EDF1ED;">
-<div class="container" style="text-align: center;">
-		<div class="col-xs-12 col-md-12" style="margin: 10px;">
-			<h1 id="heading">Random Quote Generator</h1>
-			<h5>A collection of random quotes to enlighten the you in you!</h5>
-		</div>
-		<button class="btn btn-primary" id="generate" onclick="setRandomColor()">New Quote!</button>
+	<head>
+		<title>Random Quote Generator</title>
+		<!-- Start Meta Tags -->
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1.0">
+		<meta name="description" content="Adarsh Lilha Portfolio">
+		<meta name="language" content="EN">
+		<meta name="Author" content="Adarsh Lilha">
+		<!-- End Meta Tags -->
+		<!-- Link Bootstrap CDN -->
+		<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+		<!-- Link Custom CSS -->
+		<link rel="stylesheet" href="style.css">
+	</head>
+	<body>
+		<section class="container text-center col-lg-12 col-md-12 col-sm-12 col-xs-12">
+			<section>
+				<h1>Random Quote Generator</h1>
+				<h5>A collection of random quotes to enlighten the you in you!</h5>
+			</section>
 
-		<div id="box">
-			<p id="quote"></p>
-			<p id="author"></p>
-		</div>
+			<button class="btn btn-primary" id="generate">New Quote!</button>
+			
+			<article id="box">
+				<p id="quote"></p>
+				<p id="author"></p>
+			</article>
 
-		<div id="share">
-			<p>Liked This quote?
-			<a id="share_twitter" href="https://twitter.com/intent/tweet" target="_blank" title="Tweet this quote!">
-				<button class="btn btn-success"><i class="fa fa-twitter"></i> 'Tweet It'</button>
-			</a>
-      </p>
-		</div>
-	</div>
-	<script type="text/javascript" src="script.js"></script>
-</body>
+			<section id="share">
+				<p>Liked This quote?
+					<a id="share_twitter" href="https://twitter.com/intent/tweet" target="_blank" title="Tweet this quote!">
+						<button class="btn btn-success"><i class="fa fa-twitter"></i> 'Tweet It'</button>
+					</a>
+				</p>
+			</section>
+		</section>
+		<script type="text/javascript" src="script.js"></script>
+	</body>
 </html>
 
 
