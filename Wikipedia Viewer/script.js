@@ -1,35 +1,28 @@
+function clearSection(){
+	var searchRows = document.getElementById('searchRows');
+	searchRows.innerHTML = "";
+	
+	setTimeout(getApiResponse,2000);
+}
+
 function getApiResponse(){
 	var userInput = document.querySelector('input').value;
-	//API Call
-	var getJSON = function(url,callback){
-		var xmlhttp = new XMLHttpRequest();
-		xmlhttp.open("GET",url,true);
-		xmlhttp.onload = function() {
-		    	var status = xmlhttp.status;
-		    if (status === 200) {
-		    	callback(null, xmlhttp.response);
-		    }else{
-		        callback(status, xmlhttp.response);
-		    }
-		};
-		xmlhttp.send();
-	};
 	var url = 'https://cors-anywhere.herokuapp.com/https://en.wikipedia.org/w/api.php?action=opensearch&search=' +userInput + '&prop=info&imlimit=10&format=json&$wgCapitalLinks=false';
+	console.log(url);
 
-	getJSON(url,function(err,data){
-		if (err !== null){
-			alert(err);
-		}else{
-			var wikiResponse = JSON.parse(data);
-			showApiData(wikiResponse);
-		}
+	fetch(url).then(function(data){
+		return data.json();
+	}).then(function(myBlob){
+		showApiData(myBlob);
 	});
 }
+
 
 //Show Response Data
 var results = [];
 function showApiData(apiData){
 	var j=0;
+	//Clear the result rows
 	while (j<10){
 		var row = [];
 		for (var i=1;i<=3;i++){
@@ -39,9 +32,11 @@ function showApiData(apiData){
 		results.push(row);
 		//Make section for each result
 		//Crafting section inside a var
-		var loader = $('<section class="searchRow"><h4></h4><p></p><a href="" target="_blank"></a></section>');
+		var loader = '<section class="searchRow"><h4></h4><p></p><a href="" target="_blank"></a></section>';
 		//Appending the section to parent class
-		loader.appendTo('#searchRows');
+		var searchRows = document.getElementById('searchRows');
+		searchRows.innerHTML += loader;
+		// loader.appendTo('#searchRows');
 	}
 	var totalRows = document.querySelectorAll('.searchRow');
 	for (var i=0;i<totalRows.length;i++){
@@ -52,3 +47,13 @@ function showApiData(apiData){
 	}
 	$('footer').css({'display':'block'});
 }
+
+var searchBtn = document.querySelector('button');
+searchBtn.addEventListener('click',clearSection);
+
+var input = document.querySelector('input');
+input.addEventListener('keyup',function(e){
+	if (e.keyCode === 13){
+		clearSection();
+	}
+});
