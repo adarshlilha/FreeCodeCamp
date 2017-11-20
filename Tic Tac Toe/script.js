@@ -1,68 +1,85 @@
-(function playerChar(){
-	var playBtn = document.querySelector('button');
-	playBtn.addEventListener('click',function(){
-		//get both radio button
-		var userChar = document.querySelectorAll('input[type="radio"]');
-		//get user selected sign to play - X or O
-		var userSelectedChar;
-		userChar[0].checked ? userSelectedChar = userChar[0].value : userSelectedChar = userChar[1].value;
+var StartGame = (function(){
+	var playArr = [[,,],[,,],[,,]];
+	var flagArr = [[0,0,0],[0,0,0],[0,0,0]];
+	var userChar,computerChar,count=0,won=false;
+	var getChars = () => {
+		var usersChar = document.querySelectorAll('input[type="radio"]');
+		usersChar[0].checked ? userChar = usersChar[0].value : userChar = usersChar[1].value;
 		//hide sign selection
 		document.getElementById('selectCharacter').style.display = "none";
 		//assign computer a sign to play - opposite of user
-		var computerChar = assignSign(userSelectedChar);
-		var arr = [[ , , ],[ , , ],[ , , ]];
-		var flagArr = [[0,0,0],[0,0,0],[0,0,0]];
-		//start the game
-		playerModule.startGame(userSelectedChar,arr,flagArr,computerChar);
-	});
-})();
+		computerChar = assignSign(userChar);
+		playGame();
+	};
 
-//assign computer a sign to play - opposite of user
-function assignSign(sign){
-	sign === "X" ? computerSign = "O" : computerSign = "X";
-	return computerSign;
-};
+	var assignSign = (sign) => {
+		sign === "X" ? computerSign = "O" : computerSign = "X";
+		return computerSign;
+	};
 
-var playerModule = (function(){
-	function startGame(userSelectedChar,arr,flagArr,computerChar){
+	var playGame = () => {
 		var playArea = document.getElementById('playArea');
 		playArea.style.display = "block";
 		playArea.addEventListener("click",function(e){
 			var row = Number(e.target.getAttribute('name').split('')[0]);
 			var column = Number(e.target.getAttribute('name').split('')[1]);
-			arr[row][column] = userSelectedChar;
+			playArr[row][column] = userChar;
 			flagArr[row][column] = 1;
-			e.target.innerHTML = userSelectedChar;
-			computerModule.computerTurn(computerChar,arr,flagArr);
+			e.target.innerText = userChar;
+			count++;
+			if (!won){
+				checkWinner(userChar);
+			}
+			if (count < 9){
+				computerTurn();
+			}
 		});
-	}
-	return{
-		startGame : startGame
-	}
-})();
+	};
 
-var computerModule = (function(){
-	function computerTurn(computerChar,arr,flagArr){
-		var count = 0;
-		var checkIterations = 0;
-		while (count === 0){
+	var computerTurn = () => {
+		var flagChck = 0;
+		while (flagChck === 0){
 			var row = Math.floor(Math.random() * flagArr.length);
 			var column = Math.floor(Math.random() * flagArr.length);
 			if (flagArr[row][column] === 0){
-				console.log(row,column);
-				arr[row][column] = computerChar;
+				playArr[row][column] = computerChar;
 				flagArr[row][column] = 1;
-				checkIterations += 1;
 				var name = String(row) + String(column);
-				console.log(name);
 				document.getElementsByName(name)[0].innerHTML = computerChar;
-				count = 1;
-				console.log(`checkIterations is ${checkIterations}`);
+				count++;
+				flagChck = 1;
+				if (!won){
+					checkWinner(computerChar);
+				}
 			}
 		}
-		console.log(flagArr);
-	}
+	};
+
+	var checkWinner = (char) => {
+		char === userChar ? char = 'User' : char = 'Computer';
+		var winningCount = 0;
+		for (var i=0;i<3;i++){
+			for (var j=0;j<3;j++){
+				if (playArr[i][j] === 'X'){
+					console.log('aaya');
+					winningCount += 1;
+				}
+			}
+		}
+			if (winningCount === 3){
+				alert(`${char} wins`);
+				won = true;
+			}
+		
+	};
+
 	return{
-		computerTurn : computerTurn
+		getChars : getChars
 	}
 })();
+
+var playBtn = document.querySelector('button');
+playBtn.addEventListener('click',function(){
+	//get both radio button
+	StartGame.getChars();
+});
