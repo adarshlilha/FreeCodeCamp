@@ -45,9 +45,8 @@ var StartGame = (function(){
 			if (flagArr[row][column] === 0){
 				playArr[row][column] = computerChar;
 				flagArr[row][column] = 1;
-				var name = String(row) + String(column);
-				document.getElementsByName(name)[0].innerHTML = computerChar;
-				document.getElementsByName(name)[0].style.pointerEvents = 'none';
+				document.getElementsByName(`${row}${column}`)[0].innerHTML = computerChar;
+				document.getElementsByName(`${row}${column}`)[0].style.pointerEvents = 'none';
 				count++;
 				flagChck = 1;
 				if (!won){
@@ -108,12 +107,18 @@ var StartGame = (function(){
 	}	;
 
 	var winningAlert = (winningCount) => {
-		if (winningCount === 3){
-			confirm(`X wins`);
+		var playArea = document.getElementById('playArea');
+		if ((winningCount === 3) || (winningCount === -3)){
 			won = true;
-		}else if (winningCount === -3){
-			confirm(`O wins`);
-			won = true;
+			var winner;
+			if (winningCount === 3){	
+				userChar === 'X' ? winner = 'You' : winner = 'Computer';
+			}else if (winningCount === -3){
+				userChar === 'O' ? winner = 'You' : winner = 'Computer';
+			}
+			alert(`${winner} won`);
+			playArea.classList.add('disabledbutton');
+			resetBtn.style.display = "block";
 		}
 	};
 
@@ -126,4 +131,10 @@ var playBtn = document.querySelector('button');
 playBtn.addEventListener('click',function(){
 	//get both radio button
 	StartGame.getChars();
+});
+
+//Reset Button reloads page
+var resetBtn = document.getElementById('resetBtn');
+resetBtn.addEventListener("click",function(){
+	location.reload();
 });

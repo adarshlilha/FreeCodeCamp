@@ -3,40 +3,11 @@
 	<head>
 		<title>Tic Tac Toe</title>
 		<meta charset="utf-8">
-		<style>
-			.center{
-				text-align: center;
-			}
-			header{
-				font-family: 'Playfair Display', serif;
-			}
-			#selectCharacter{
-				margin: 50px 0;
-				font-size: 20px;
-			}
-			#selectCharacter button{
-				width: 50px;
-				height: 30px;
-				margin: 30px 0;
-			}
-			#playArea{
-				display: none;
-				width: 40%;
-				height: 300px;
-				margin: 0 auto;
-			}
-			#playArea section{
-				height: 100px;
-			}
-			#playArea section div{
-				height: 100px;
-				width: 32.81%;
-				float: left;
-				border: 1px solid black;
-				font-size: 50px;
-			}	
-		</style>
+		<!-- Link Bootstrap CDN -->
+	    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 		<link href="https://fonts.googleapis.com/css?family=Playfair+Display" rel="stylesheet">
+		<!-- Link Custom Style -->
+		<link rel="stylesheet" type="text/css" href="style.css">
 	</head>
 	<body>
 		<header class="center">
@@ -46,26 +17,29 @@
 			<h3>Play game as:</h3>
 			<input type="radio" value="X" name="userCharacter" checked>X
 			<input type="radio" value="O" name="userCharacter">O <br>
-			<button>Play</button>
+			<button class="btn btn-primary">Play</button>
 		</section>
 
 		<section id="playArea">
 			<section>
-				<div name="00" class="center"></div>
-				<div name="01" class="center"></div>
-				<div name="02" class="center"></div>
+				<div name="00" class="text-center"></div>
+				<div name="01" class="text-center"></div>
+				<div name="02" class="text-center"></div>
 			</section>
 			<section>
-				<div name="10" class="center"></div>
-				<div name="11" class="center"></div>
-				<div name="12" class="center"></div>
+				<div name="10" class="text-center"></div>
+				<div name="11" class="text-center"></div>
+				<div name="12" class="text-center"></div>
 			</section>
 			<section>
-				<div name="20" class="center"></div>
-				<div name="21" class="center"></div>
-				<div name="22" class="center"></div>
+				<div name="20" class="text-center"></div>
+				<div name="21" class="text-center"></div>
+				<div name="22" class="text-center"></div>
 			</section>
 		</section>
+
+		<button id="resetBtn" class="btn btn-success">Play Again</button>
 	</body>
+	<!-- Link Custom JS -->
 	<script src="script.js" type="text/javascript"></script>
 </html>
