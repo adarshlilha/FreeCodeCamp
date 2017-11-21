@@ -27,11 +27,12 @@ var StartGame = (function(){
 			flagArr[row][column] = 1;
 			e.target.innerText = userChar;
 			count++;
+			document.getElementsByName(`${row}${column}`)[0].style.pointerEvents = 'none';
 			if (!won){
-				checkWinner(userChar);
+				checkWinner();
 			}
 			if (count < 9){
-				computerTurn();
+				setTimeout(computerTurn,700);
 			}
 		});
 	};
@@ -46,31 +47,74 @@ var StartGame = (function(){
 				flagArr[row][column] = 1;
 				var name = String(row) + String(column);
 				document.getElementsByName(name)[0].innerHTML = computerChar;
+				document.getElementsByName(name)[0].style.pointerEvents = 'none';
 				count++;
 				flagChck = 1;
 				if (!won){
-					checkWinner(computerChar);
+					checkWinner();
 				}
 			}
 		}
 	};
 
-	var checkWinner = (char) => {
-		char === userChar ? char = 'User' : char = 'Computer';
-		var winningCount = 0;
+	var checkWinner = () => {
 		for (var i=0;i<3;i++){
+			var winningCount = 0;
 			for (var j=0;j<3;j++){
 				if (playArr[i][j] === 'X'){
-					console.log('aaya');
 					winningCount += 1;
 				}
+				else if (playArr[i][j] === 'O'){
+					winningCount -= 1;
+				}
 			}
+			winningAlert(winningCount);
 		}
-			if (winningCount === 3){
-				alert(`${char} wins`);
-				won = true;
+			
+		for (var j=0;j<3;j++){
+			var winningCount = 0;
+			for (var i=0;i<3;i++){
+				if (playArr[i][j] === 'X'){
+					winningCount += 1;
+				}
+				else if (playArr[i][j] === 'O'){
+					winningCount -= 1;
+				}
 			}
-		
+			winningAlert(winningCount);
+		}
+
+		var winningCount = 0;
+		for (var i=0;i<3;i++){
+			if (playArr[i][i] === 'X'){
+				winningCount += 1;
+			}
+			else if (playArr[i][i] === 'O'){
+				winningCount -= 1;
+			}
+			winningAlert(winningCount);
+		}
+
+		var winningCount = 0;
+		for (var i=0,j=2;i<3;i++,j--){
+			if (playArr[i][j] === 'X'){
+				winningCount += 1;
+			}
+			else if (playArr[i][j] === 'O'){
+				winningCount -= 1;
+			}
+			winningAlert(winningCount);
+		}
+	}	;
+
+	var winningAlert = (winningCount) => {
+		if (winningCount === 3){
+			confirm(`X wins`);
+			won = true;
+		}else if (winningCount === -3){
+			confirm(`O wins`);
+			won = true;
+		}
 	};
 
 	return{
