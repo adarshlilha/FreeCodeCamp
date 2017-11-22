@@ -1,0 +1,90 @@
+html,body{
+	height: 100%;
+	width: 100%;
+}
+#colors{
+	height: 300px;
+	margin: 10px;
+	padding-right: 0;
+	padding-left: 0;
+	border: 2px solid black;
+	top: 25%;
+	left: 32%;
+}
+#color1{
+	height: 50%;
+	opacity: 1;
+	background: red;
+}
+#color2{
+	height: 50%;
+	opacity: 1;
+	background: blue;
+}
+#color3{
+	height: 50%;
+	opacity: 1;
+	background: green;
+}
+#color4{
+	height: 50%;
+	opacity: 1;
+	background: yellow;
+}
+#controls{
+	height: 160px;
+	width: 50%;
+	border: 2px solid black;
+	z-index: 1;
+	position: absolute;
+	background: white;
+	left: 25%;
+	top: 25%;
+}
+#input{
+	display:inline;
+	color:white;
+	font-size: 200%;
+	padding: 0% 4%;
+	background: black;
+	position: absolute;
+	left: 25%;
+}
+#startBtn{
+	background: green;
+	height: 30px;
+	width: 30px;
+	position: absolute;
+	border: 1px solid black;
+	border-radius: 50%;
+	left: 50%;
+	top: 38%;
+}
+#strictBtn{
+	background: yellow;
+	height: 30px;
+	width: 30px;
+	position: absolute;
+	border: 1px solid black;
+	border-radius: 50%;
+	left: 75%;
+	top: 38%;
+}
+#controls label{
+	position: absolute;
+	top: 65%;
+}
+
+#count {
+	left:25%;
+}
+
+#start {
+	left:50%;
+}
+#strict {
+	left:75%;
+}
+#restartBtn{
+	margin-top: 30%;
+}
